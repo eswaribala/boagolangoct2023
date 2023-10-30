@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func init() {
@@ -34,13 +35,21 @@ func main() {
 	//find out the number of args passed
 	fmt.Printf("The length of the arguments = %d\n", len(args))
 	if len(args) > 2 {
-		readServerProperties(args)
+		data, err := readServerProperties(args)
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			for index, value := range data {
+				fmt.Println(index, value)
+			}
+		}
 	}
 }
 
-func readServerProperties(properties []string) {
+func readServerProperties(properties []string) ([]string, error) {
 
 	//create the array
+	serverProperties := make([]string, 4)
 
 	//traditional loop
 	/*
@@ -49,9 +58,21 @@ func readServerProperties(properties []string) {
 		}
 	*/
 
-	//enhanced for loop
-	for index, value := range properties {
-		fmt.Println(index, value)
-	}
+	port, err := strconv.Atoi(properties[2])
 
+	if err != nil {
+		return nil, err
+	} else {
+
+		if port > 1027 {
+
+			//enhanced for loop
+			for index, value := range properties {
+				serverProperties[index] = value
+			}
+		} else {
+			return nil, err
+		}
+	}
+	return serverProperties, nil
 }
