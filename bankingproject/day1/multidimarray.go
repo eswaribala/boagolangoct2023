@@ -34,15 +34,30 @@ func main() {
 		case "young":
 			if value[1] == "true" && value[2] == "true" && cibilScore > 700 {
 				status = true
+			} else if value[1] == "true" && value[2] == "false" && cibilScore > 700 {
+
+				status = true
+			} else {
+				status = false
 			}
 
 		case "middle":
 			if value[1] == "true" && value[2] == "true" && cibilScore > 700 {
 				status = true
+			} else if value[1] == "true" && value[2] == "false" && cibilScore > 700 {
+
+				status = true
+			} else {
+				status = false
 			}
 		case "old":
 			if value[1] == "true" && value[2] == "true" && cibilScore > 700 {
 				status = true
+			} else if value[1] == "true" && value[2] == "false" && cibilScore > 700 {
+
+				status = true
+			} else {
+				status = false
 			}
 		}
 	}
