@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-
+	status := false
 	//declare 2d array
 	loandecision := [][]string{}
 	row1 := []string{"young", "true", "true", "750"}
@@ -22,14 +22,16 @@ func main() {
 	loandecision = append(loandecision, row5)
 
 	//show the table
-	var status bool
+
 	for index, value := range loandecision {
+
 		fmt.Println(index, value)
 		for idx, val := range value {
 			fmt.Println(idx, val)
 		}
 		//print loan approval status
 		cibilScore, _ := strconv.Atoi(value[3])
+
 		switch value[0] {
 		case "young":
 			if value[1] == "true" && value[2] == "true" && cibilScore > 700 {
@@ -52,13 +54,14 @@ func main() {
 			}
 		case "old":
 			if value[1] == "true" && value[2] == "true" && cibilScore > 700 {
-				status = true
+				status = false
 			} else if value[1] == "true" && value[2] == "false" && cibilScore > 700 {
 
-				status = true
+				status = false
 			} else {
 				status = false
 			}
 		}
+		fmt.Printf("Loan Approval Status%t", status)
 	}
 }
