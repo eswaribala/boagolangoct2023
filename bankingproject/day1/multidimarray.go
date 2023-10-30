@@ -62,6 +62,10 @@ func main() {
 				status = false
 			}
 		}
-		fmt.Printf("Loan Approval Status%t", status)
+		if status == true {
+			fmt.Printf("Loan Approval Status%t Accepted\n", status)
+		} else {
+			fmt.Printf("Loan Approval Status%t Rejected\n", status)
+		}
 	}
 }
