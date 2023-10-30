@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func init() {
@@ -24,10 +25,23 @@ func main() {
 	contactNo = 9952032862
 	email = "parameswaribala@gmail.com"
 	address = "chennai"
-
 	fmt.Println("Rocking with Go!!!")
 	fmt.Printf("Customre Name=%s having accountNo=%d\n", name, accountNumber)
 	//invoking function from external go file in the same package
-	helper()
+	//helper()
+	//read command line arguments
+	args := os.Args
+	//find out the number of args passed
+	fmt.Printf("The length of the arguments = %d\n", len(args))
+	if len(args) > 2 {
+		readServerProperties(args)
+	}
+}
+
+func readServerProperties(properties []string) {
+
+	for i := 1; i < len(properties); i++ {
+		fmt.Println(properties[i])
+	}
 
 }
