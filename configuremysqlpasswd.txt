@@ -1,0 +1,64 @@
+Configuring MySQL Server and Setting Root Password
+
+Open a terminal.
+
+Change the directory to /etc/mysql/mysql.conf.d using the cd command:
+
+terminal
+ cd /etc/mysql/mysql.conf.d
+
+Edit the MySQL configuration file, mysqld.cnf, using the nano text editor. You'll need superuser (sudo) privileges to edit this file:
+
+terminal
+ sudo nano mysqld.cnf
+
+Within the configuration file, you will need to comment out or disable the password validation plugin. Locate the line with "password=" and comment it out by adding a "#" symbol at the beginning of the line. It should look like this:
+
+terminal
+# password= root
+
+Save your changes by pressing Ctrl + O, then press Enter to confirm. Exit the text editor with Ctrl + X.
+
+Restart the MySQL service for the changes to take effect:
+
+terminal
+ sudo service mysql restart
+
+This step is important because you modified the MySQL configuration.
+
+Setting the Root Password
+Log in to MySQL as the root user without providing a password:
+
+terminal
+sudo mysql -u root -p
+
+Since you've commented out the password, you won't be prompted for a password.
+
+Once logged in, you should see the MySQL prompt. To check the current password policy, run the following command:
+
+terminal
+SHOW VARIABLES LIKE 'validate_password%';
+
+To set the password policy to "LOW," use the following SQL command:
+
+terminal
+SET GLOBAL validate_password.policy = LOW;
+
+Flush the privileges to apply the new password policy:
+
+FLUSH PRIVILEGES;
+
+To set a password for the root user, use the following SQL command. Replace 'rps@12345' with your desired password:
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rps@12345';
+
+Again, flush the privileges to apply the changes:
+
+
+FLUSH PRIVILEGES;
+
+Exit the MySQL prompt:
+
+11.exit;
+
+You have now configured your MySQL server, set the root password, and adjusted the password policy to "LOW."
