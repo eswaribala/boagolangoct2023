@@ -26,5 +26,8 @@ func main() {
 	address = "chennai"
 
 	fmt.Println("Rocking with Go!!!")
-	fmt.Printf("Customre Name=%s having accountNo=%d", name, accountNumber)
+	fmt.Printf("Customre Name=%s having accountNo=%d\n", name, accountNumber)
+	//invoking function from external go file in the same package
+	helper()
+
 }
