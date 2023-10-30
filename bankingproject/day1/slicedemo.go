@@ -28,4 +28,23 @@ func main() {
 		fmt.Println(index, value)
 	}
 
+	customers = customers[4:10]
+	for index, value := range customers {
+		fmt.Println(index, value)
+	}
+
+	customers[2] = "Parameswari"
+	customers[3] = "Bala"
+
+	for index, value := range customers {
+		fmt.Println(index, value)
+	}
+
+	customers = make([]string, 7, 20)
+	for i := 0; i < 20; i++ {
+		customers = append(customers, "customer"+strconv.Itoa(i))
+	}
+	for index, value := range customers {
+		fmt.Println(index, value)
+	}
 }
