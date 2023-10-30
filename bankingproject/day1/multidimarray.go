@@ -20,7 +20,10 @@ func main() {
 
 	//show the table
 
-	for i := range loandecision {
-		fmt.Println(i)
+	for index, value := range loandecision {
+		fmt.Println(index, value)
+		for idx, val := range value {
+			fmt.Println(idx, val)
+		}
 	}
 }
