@@ -40,8 +40,18 @@ func main() {
 
 func readServerProperties(properties []string) {
 
-	for i := 1; i < len(properties); i++ {
-		fmt.Println(properties[i])
+	//create the array
+
+	//traditional loop
+	/*
+		for i := 1; i < len(properties); i++ {
+			fmt.Println(properties[i])
+		}
+	*/
+
+	//enhanced for loop
+	for index, value := range properties {
+		fmt.Println(index, value)
 	}
 
 }
