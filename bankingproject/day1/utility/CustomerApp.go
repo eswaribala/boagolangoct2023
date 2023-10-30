@@ -24,11 +24,7 @@ func main() {
 			StreetName: "First Street",
 			City:       "Chennai",
 		},
-		TemporaryAddress: models.Address{
-			DoorNo:     "16",
-			StreetName: "First Street",
-			City:       "Chennai",
-		},
+
 		DOB: models.Date{
 			Day:   2,
 			Month: 12,
