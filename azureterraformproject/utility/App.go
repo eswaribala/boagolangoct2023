@@ -34,4 +34,17 @@ func main() {
 	size := reflect.TypeOf(vmInstance1).Size()
 	fmt.Printf("Size of the Struture=%d\n", size)
 
+	vmInstance2 := models.VMConfiguration{
+		CPUCount:     13,
+		RAM:          "64GB",
+		Regions:      regions[2],
+		AccessKey:    "Aegwfu3624586235546356",
+		SecretKey:    "BIGIG*868697694365467",
+		InstanceType: "t2.micro",
+		Provider:     "azure",
+		VMName:       "BOA_VM2",
+	}
+
+	result := reflect.DeepEqual(vmInstance2, vmInstance1)
+	fmt.Println("Is destination equal to Source", result)
 }
