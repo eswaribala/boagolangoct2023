@@ -5,7 +5,7 @@ type VMConfiguration struct {
 	VMName       string
 	AccessKey    string
 	SecretKey    string
-	Regions      []string
+	Regions      string
 	InstanceType string
 	CPUCount     int
 	RAM          string
