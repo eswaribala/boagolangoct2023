@@ -31,6 +31,17 @@
       "cpu_count": 12,
       "ram": 96
 
+    },
+    {
+      "provider": "openshift",
+      "vm_name": "vm-07",
+      "access_key": "A842542919",
+      "secret_key": "S4329697",
+      "regions": "Australia",
+      "instance_type": "t1.medium",
+      "cpu_count": 12,
+      "ram": 96
+
     }
 
   ]

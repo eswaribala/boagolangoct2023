@@ -21,6 +21,7 @@ func main() {
 	} else {
 		fmt.Println("File Successfully Opened")
 		byteValue, _ := ioutil.ReadAll(jsonFile)
+		//mapping json data golang object
 		json.Unmarshal(byteValue, &vmInstances)
 		for key, value := range vmInstances.VMInstances {
 			fmt.Println(key, value)
