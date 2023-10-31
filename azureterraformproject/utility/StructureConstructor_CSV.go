@@ -21,7 +21,7 @@ func main() {
 
 		records, _ := fileReader.ReadAll()
 		vmInstances := make([]models.VMConfiguration, len(records)-1)
-
+		fmt.Println(records)
 		//fmt.Println(records)
 		for index, value := range records {
 			if index == 0 {
@@ -39,7 +39,7 @@ func main() {
 // VMConfigurationV1 simulating parameterized constructor
 func VMConfigurationV1(data []string) models.VMConfiguration {
 
-	cpuCount, _ = strconv.Atoi(data[6])
+	cpuCount, _ := strconv.Atoi(data[6])
 	vmInstance := models.VMConfiguration{
 		CPUCount:     cpuCount,
 		RAM:          data[7],
