@@ -47,4 +47,22 @@ func main() {
 
 	result := reflect.DeepEqual(vmInstance2, vmInstance1)
 	fmt.Println("Is destination equal to Source", result)
+
+	//type comparison
+	structType := reflect.TypeOf(vmInstance1)
+	fmt.Println(structType)
+
+	if structType.Kind() == reflect.TypeOf(vmInstance1).Kind() {
+		fmt.Println("They are same")
+	}
+
+	//any data type
+	vnetData := []any{"VNET1", 8080, true}
+
+	//show only numerical data
+	for _, value := range vnetData {
+		if reflect.TypeOf(value).Kind() == reflect.Int {
+			fmt.Println(value)
+		}
+	}
 }
