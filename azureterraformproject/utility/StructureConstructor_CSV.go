@@ -16,11 +16,10 @@ func main() {
 		fmt.Println("Error occurred", err)
 	} else {
 		fmt.Println("File Successfully Opened")
+		fileReader := csv.NewReader(fileContent)
+		records, _ := fileReader.ReadAll()
+		fmt.Println(records)
 	}
-
-	fileReader := csv.NewReader(fileContent)
-	records, _ := fileReader.ReadAll()
-	fmt.Println(records)
 
 	//vmInstance := VMConfiguration(provider, vmname, accessKey, secretKey, regions, instanceType, cpuCount, ram)
 	//fmt.Printf("VM Instance%+v", vmInstance)
