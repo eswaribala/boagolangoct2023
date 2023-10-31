@@ -9,5 +9,29 @@
     "cpu_count": 2,
     "ram": 32
 
-  }]
+  },
+    {
+      "provider": "azure",
+      "vm_name": "vm-02",
+      "access_key": "A842542914",
+      "secret_key": "S4329656",
+      "regions": "Us-East",
+      "instance_type": "t1.nano",
+      "cpu_count": 4,
+      "ram": 64
+
+    },
+    {
+      "provider": "gcp",
+      "vm_name": "vm-04",
+      "access_key": "A842542915",
+      "secret_key": "S4329697",
+      "regions": "Ohio",
+      "instance_type": "t1.medium",
+      "cpu_count": 12,
+      "ram": 96
+
+    }
+
+  ]
 }
