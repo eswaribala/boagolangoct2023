@@ -1,0 +1,13 @@
+{
+  "instances": [{
+    "provider": "aws",
+    "vm_name": "vm-01",
+    "access_key": "A842542913",
+    "secret_key": "S4329694",
+    "regions": "Mumbai",
+    "instance_type": "t1.micro",
+    "cpu_count": 2,
+    "ram": 32
+
+  }]
+}

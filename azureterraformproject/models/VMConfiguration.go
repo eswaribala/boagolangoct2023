@@ -1,12 +1,12 @@
 package models
 
 type VMConfiguration struct {
-	Provider     string
-	VMName       string
-	AccessKey    string
-	SecretKey    string
-	Regions      string
-	InstanceType string
-	CPUCount     int
-	RAM          string
+	Provider     string `json:"provider"`
+	VMName       string `json:"vm_name"`
+	AccessKey    string `json:"access_key"`
+	SecretKey    string `json:"secret_key"`
+	Regions      string `json:"regions"`
+	InstanceType string `json:"instance_type"`
+	CPUCount     int    `json:"cpu_count"`
+	RAM          string `json:"ram"`
 }
