@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -17,29 +18,38 @@ func main() {
 	} else {
 		fmt.Println("File Successfully Opened")
 		fileReader := csv.NewReader(fileContent)
-		records, _ := fileReader.ReadAll()
-		fmt.Println(records)
-	}
 
-	//vmInstance := VMConfiguration(provider, vmname, accessKey, secretKey, regions, instanceType, cpuCount, ram)
-	//fmt.Printf("VM Instance%+v", vmInstance)
+		records, _ := fileReader.ReadAll()
+		vmInstances := make([]models.VMConfiguration, len(records)-1)
+
+		//fmt.Println(records)
+		for index, value := range records {
+			if index == 0 {
+				continue
+			}
+
+			vmInstances[index] = VMConfigurationV1(value)
+			fmt.Printf("Vm Instance=%+v", vmInstances[index])
+		}
+
+	}
 
 }
 
 // VMConfigurationV1 simulating parameterized constructor
-func VMConfigurationV1(provider string, vmName string, accessKey string, secretKey string,
-	regions string, instanceType string, cpuCount int, ram string) *models.VMConfiguration {
+func VMConfigurationV1(data []string) models.VMConfiguration {
 
+	cpuCount, _ = strconv.Atoi(data[6])
 	vmInstance := models.VMConfiguration{
 		CPUCount:     cpuCount,
-		RAM:          ram,
-		Regions:      regions,
-		AccessKey:    accessKey,
-		SecretKey:    secretKey,
-		InstanceType: instanceType,
-		Provider:     provider,
-		VMName:       vmName,
+		RAM:          data[7],
+		Regions:      data[4],
+		AccessKey:    data[2],
+		SecretKey:    data[3],
+		InstanceType: data[5],
+		Provider:     data[0],
+		VMName:       data[1],
 	}
-	return &vmInstance
+	return vmInstance
 
 }
