@@ -18,18 +18,16 @@ func main() {
 	} else {
 		fmt.Println("File Successfully Opened")
 		fileReader := csv.NewReader(fileContent)
-
 		records, _ := fileReader.ReadAll()
-		vmInstances := make([]models.VMConfiguration, len(records)-1)
-		fmt.Println(records)
-		//fmt.Println(records)
+		vmInstances := make([]models.VMConfiguration, len(records))
+
 		for index, value := range records {
 			if index == 0 {
 				continue
 			}
 
 			vmInstances[index] = VMConfigurationV1(value)
-			fmt.Printf("Vm Instance=%+v", vmInstances[index])
+			fmt.Printf("Vm Instance=%+v\n", vmInstances[index])
 		}
 
 	}
