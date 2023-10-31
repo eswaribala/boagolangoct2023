@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"strconv"
+)
 
 var (
 	vmName string
@@ -18,5 +22,12 @@ func main() {
 	fmt.Printf("VM Name=%s\n", vmName)
 	fmt.Printf("Before Changing VM Name=%v\n", *pvmName)
 	fmt.Printf("Before Changing Address of VM Name=%v\n", pvmName)
+	changeName(pvmName)
+	fmt.Printf("After changing VM Name=%s\n", vmName)
+	fmt.Printf("After Changing VM Name=%v\n", *pvmName)
+	fmt.Printf("After Changing Address of VM Name=%v\n", pvmName)
+}
 
+func changeName(vmName *string) {
+	*vmName = *vmName + strconv.Itoa(rand.Intn(10000000000000))
 }
