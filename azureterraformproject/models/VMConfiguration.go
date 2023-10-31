@@ -10,3 +10,7 @@ type VMConfiguration struct {
 	CPUCount     int    `json:"cpu_count"`
 	RAM          string `json:"ram"`
 }
+
+type VMInstances struct {
+	VMInstances []VMConfiguration `json:"instances"`
+}
