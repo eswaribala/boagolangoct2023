@@ -1,0 +1,129 @@
+rps@rps-virtual-machine:/etc/mysql/mysql.conf.d$ sudo mysql -u root -p
+[sudo] password for rps: 
+Enter password: 
+
+
+mysql> SET GLOBAL validate_password.policy = LOW;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++-------------------------------------------------+-------+
+| Variable_name                                   | Value |
++-------------------------------------------------+-------+
+| validate_password.changed_characters_percentage | 0     |
+| validate_password.check_user_name               | ON    |
+| validate_password.dictionary_file               |       |
+| validate_password.length                        | 8     |
+| validate_password.mixed_case_count              | 1     |
+| validate_password.number_count                  | 1     |
+| validate_password.policy                        | LOW   |
+| validate_password.special_char_count            | 1     |
++-------------------------------------------------+-------+
+8 rows in set (0.02 sec)
+
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rps12345';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> commit ;
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> SHOW DATABASES; 
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.02 sec)
+
+mysql> CREATE DATABASE azuredb;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit; 
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| azuredb            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> commit ; 
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> \q
+Bye
+
+
+# In models/VMConfigurationDBHelper.go 
+
+db, err := gorm.Open("mysql", "root:rps12345@(localhost:3306)/?parseTime=true")
+
+# save chagnes and run the go program. 
+
+# output
+
+GOROOT=/home/rps/sdk/go1.21.3 #gosetup
+GOPATH=/home/rps/go #gosetup
+/home/rps/sdk/go1.21.3/bin/go build -o /home/rps/.cache/JetBrains/GoLand2023.2/tmp/GoLand/___1go_build_azureterraformproject_utility /home/rps/gitprojects/boagolangoct2023/azureterraformproject/utility/InterfaceDemo.go #gosetup
+/home/rps/.cache/JetBrains/GoLand2023.2/tmp/GoLand/___1go_build_azureterraformproject_utility
+2023/11/01 17:36:08 Connection Established
+2023/11/01 17:36:08 Instance Started
+2023/11/01 17:36:08 Instance Stopped
+2023/11/01 17:36:08 Instance Terminated
+
+
+# Now verify the database for records check. 
+
+mysql> use azuredb; 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc azuredb;
+ERROR 1146 (42S02): Table 'azuredb.azuredb' doesn't exist
+mysql> show tables;
++-------------------+
+| Tables_in_azuredb |
++-------------------+
+| vm_configurations |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> desc vm_configurations;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| provider      | varchar(255) | YES  |     | NULL    |       |
+| vm_name       | varchar(255) | YES  |     | NULL    |       |
+| access_key    | varchar(255) | YES  |     | NULL    |       |
+| secret_key    | varchar(255) | YES  |     | NULL    |       |
+| regions       | varchar(255) | YES  |     | NULL    |       |
+| instance_type | varchar(255) | YES  |     | NULL    |       |
+| cpu_count     | int          | YES  |     | NULL    |       |
+| ram           | varchar(255) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
