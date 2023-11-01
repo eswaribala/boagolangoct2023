@@ -2,7 +2,7 @@ rps@rps-virtual-machine:/etc/mysql/mysql.conf.d$ sudo mysql -u root -p
 [sudo] password for rps: 
 Enter password: 
 
-
+INSTALL PLUGIN validate_password SONAME 'validate_password.so';
 mysql> SET GLOBAL validate_password.policy = LOW;
 Query OK, 0 rows affected (0.00 sec)
 
