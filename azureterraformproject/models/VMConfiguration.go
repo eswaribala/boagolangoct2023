@@ -1,5 +1,7 @@
 package models
 
+import "log"
+
 type Subnet struct {
 	CIDR             string
 	VPCID            string
@@ -25,12 +27,22 @@ type VMInstances struct {
 
 // interface implementation
 // interface method
-func (vmConfiguration *VMConfiguration) Start() {
+func (vmConfiguration *VMConfiguration) Start(vmInstanceName *string) {
+
+	if vmConfiguration.VMName == *vmInstanceName {
+		log.Println("Instance Started")
+	}
 
 }
-func (vmConfiguration *VMConfiguration) Stop() {
+func (vmConfiguration *VMConfiguration) Stop(start bool) {
+	if start {
+		log.Println("Instance Stopped")
+	}
 
 }
-func (vmConfiguration *VMConfiguration) Terminate() {
+func (vmConfiguration *VMConfiguration) Terminate(stop bool) {
 
+	if stop {
+		log.Println("Instance Terminated")
+	}
 }

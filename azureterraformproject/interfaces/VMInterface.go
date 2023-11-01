@@ -1,7 +1,7 @@
 package interfaces
 
 type VMInterface interface {
-	Start()
-	Stop()
-	Terminate()
+	Start(vmInstance *string)
+	Stop(start bool)
+	Terminate(stop bool)
 }
