@@ -1,5 +1,12 @@
 package models
 
+type Subnet struct {
+	CIDR             string
+	VPCID            string
+	ZONEID           string
+	AvailabilityZone bool
+}
+
 type VMConfiguration struct {
 	Provider     string `json:"provider"`
 	VMName       string `json:"vm_name"`
@@ -9,6 +16,7 @@ type VMConfiguration struct {
 	InstanceType string `json:"instance_type"`
 	CPUCount     int    `json:"cpu_count"`
 	RAM          string `json:"ram"`
+	SubnetType   Subnet //has relationship
 }
 
 type VMInstances struct {
