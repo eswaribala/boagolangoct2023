@@ -1,0 +1,77 @@
+Below is the keys for AZ-400 -23nos. Follow the procedure as given below. Don’t share the keys together. Share it individually     
+
+ 
+
+The keys should be individually provided to the students to be redeemed at this URL: https://rpssoft.learnondemand.net, they will need to create an account if they do not have one, and then click on "Current Training" at the top of their profile page, then have them click "Redeem Training Key" towards the top of their "Current Training" page. This will give them a box they can type the key into to enroll in the class.
+
+ 
+
+Trainer Credential:
+
+User Name : parameswaribala@gmail.com
+
+PW: Rps@12345
+
+ 
+
+Note:
+
+1. Use this Link to perform lab : https://rpssoft.learnondemand.net/
+
+2. Instructor can access the labs prior to the class and check everything
+
+3. Trainer has to login using there Login credentials.
+
+4.Once LOD lab is procured we can’t return or  keep it as stock.
+
+ 
+
+Please find the courseware & achievement code link. Kindly share it with participants & ask them to redeem it without fail.
+
+ 
+
+Class ID
+
+Course
+
+Courseware Link
+
+Achievement link
+
+No. of pax
+
+23MAN2303
+
+AZ-400
+
+https://learn.microsoft.com/training/courses/az-400t00?WT.mc_id=ilt_partner_webpage_wwl&ocid=3575870#study-guide
+
+https://learn.microsoft.com/en-us/users/me/achievements?WT.mc_id=ilt_partner_webpage_wwl&ocid=3575870&redeem=LZ7VZG
+
+23
+
+ 
+
+                                                           
+
+Instructions:
+
+Courseware URL
+
+1. You can access the Microsoft Official Courseware using above mentioned URL.
+
+2. You must be logged in to Microsoft Learn Account while accessing the courseware URL. It helps you to track the progress of your training and certification activities.
+
+3. If you do not already have a Microsoft Learn account. You can create a new account on https://learn.microsoft.com/en-us/training/
+
+Achievement URL
+
+1. You must log into your Microsoft Learn account to redeem the Achievement URL. (If not signed in, you will be prompted to sign-in to your Microsoft Learn account.)
+
+2. Next screen will show you a code and prompt you to click on Redeem. “Please click on Redeem”
+
+3. After a few seconds you will see a confirmation message "We've added your achievement to your profile"
+
+Completing the above process is mandatory to obtain Course Completion Badge
+
+Thank you! 
