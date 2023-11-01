@@ -15,5 +15,5 @@ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 (change port)
 
 sudo service mysql start
-sudo mysql_secure_installation
-mysql -u root  -p
+
+sudo mysql -u root  -p
