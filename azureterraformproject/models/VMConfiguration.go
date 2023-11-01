@@ -16,9 +16,21 @@ type VMConfiguration struct {
 	InstanceType string `json:"instance_type"`
 	CPUCount     int    `json:"cpu_count"`
 	RAM          string `json:"ram"`
-	SubnetType   Subnet //has relationship
+	//SubnetType   Subnet //has relationship
 }
 
 type VMInstances struct {
 	VMInstances []VMConfiguration `json:"instances"`
+}
+
+// interface implementation
+// interface method
+func (vmConfiguration *VMConfiguration) Start() {
+
+}
+func (vmConfiguration *VMConfiguration) Stop() {
+
+}
+func (vmConfiguration *VMConfiguration) Terminate() {
+
 }
