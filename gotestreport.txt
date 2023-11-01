@@ -1,0 +1,3 @@
+go install github.com/vakenbolt/go-test-report/
+
+go test -json | go-test-report
