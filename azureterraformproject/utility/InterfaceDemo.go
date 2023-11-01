@@ -27,9 +27,10 @@ func main() {
 	//Associate the instance to interface
 	vmInterfaceRef = &vmInstance
 	instanceName := "BOA_VM1"
-	
+
 	//step3
 	//method invocation
+	vmInterfaceRef.ConnectionHelper()
 	vmInterfaceRef.Start(&instanceName)
 	vmInterfaceRef.Stop(true)
 	vmInterfaceRef.Terminate(true)

@@ -1,6 +1,8 @@
 package models
 
-import "log"
+import (
+	"log"
+)
 
 type Subnet struct {
 	CIDR             string
@@ -27,6 +29,11 @@ type VMInstances struct {
 
 // interface implementation
 // interface method
+
+func (vmConfiguration *VMConfiguration) ConnectionHelper() {
+	CreateDBConnection()
+}
+
 func (vmConfiguration *VMConfiguration) Start(vmInstanceName *string) {
 
 	if vmConfiguration.VMName == *vmInstanceName {
