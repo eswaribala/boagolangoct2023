@@ -6,7 +6,7 @@ INSTALL PLUGIN validate_password SONAME 'validate_password.so';
 select plugin_name, plugin_status from information_schema.plugins where plugin_name like 'validate%';
  SHOW VARIABLES LIKE 'validate_password%';
 
-mysql> SET GLOBAL validate_password.policy = LOW;
+mysql> SET GLOBAL validate_password_policy = LOW;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> commit;
