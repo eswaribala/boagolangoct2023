@@ -2,7 +2,6 @@ package models
 
 import (
 	Config "azureterraformproject/config"
-	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -21,7 +20,7 @@ func CreateDBConnection() (*gorm.DB, error) {
 	defer handlePanicScenario()
 	if len(Config.DbURL(Config.BuildDBConfig())) == 0 {
 		panic("Connection string is empty")
-		return nil, errors.New("Connection String Empty")
+		//return nil, errors.New("Connection String Empty")
 	} else {
 
 		db, err := gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
