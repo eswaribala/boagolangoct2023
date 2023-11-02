@@ -4,6 +4,7 @@ import (
 	"github.com/hashicorp/vault/api"
 	"log"
 	"net/http"
+	"reflect"
 	"time"
 )
 
@@ -14,7 +15,7 @@ var httpClient = &http.Client{
 func main() {
 
 	vaultAddr := "http://localhost:8200"
-	rootToken := "s.Lo4buAvItmJaxiSYeLSyfgcA"
+	rootToken := "s.7a1lmH5XuRV3LsLbmcVE23fh"
 	log.Println("Entered")
 	client, err := api.NewClient(&api.Config{Address: vaultAddr, HttpClient: httpClient})
 	if err != nil {
@@ -29,6 +30,7 @@ func main() {
 	}
 	for key, value := range secrets.Data {
 		log.Println(key, value)
+		log.Println(reflect.TypeOf(value))
 	}
 
 }
