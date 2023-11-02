@@ -7,14 +7,14 @@ import (
 	"time"
 )
 
-func routineAccessLink(link string, pChannel chan string) {
-	response, err := http.Get(link)
+func routineAccessLink(link *string, pChannel chan string) {
+	response, err := http.Get(*link)
 	if err != nil {
 		log.Fatal("Site Not Available")
 	} else {
 		log.Printf("Found the site=%s and having response code%d\n",
-			link, response.StatusCode)
-		pChannel <- "Routine completed the task"
+			*link, response.StatusCode)
+		pChannel <- "Routine completed the task" + *link
 	}
 
 }
@@ -32,7 +32,7 @@ func main() {
 
 	for _, value := range links {
 		//function call converted to routine call
-		go routineAccessLink(value, channel)
+		go routineAccessLink(&value, channel)
 		//create the delay between routines
 		time.Sleep(5 * time.Second)
 	}
