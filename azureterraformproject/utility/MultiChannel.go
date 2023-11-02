@@ -2,6 +2,7 @@ package main
 
 import (
 	"azureterraformproject/models"
+	"fmt"
 	"github.com/gruntwork-io/terratest/modules/azure"
 	"log"
 )
@@ -20,6 +21,18 @@ func main() {
 	go AWSCloud(awsChannel)
 	go AzureCloud(azureChannel)
 
+	func() {
+		select {
+		case m1 := <-awsChannel:
+			fmt.Printf("AWS Message%s\n", m1)
+		case m2 := <-azureChannel:
+			fmt.Printf("Azure Message%+v\n", m2)
+		case m3 := <-gcpChannel:
+			fmt.Printf("GCP Message%d\n", m3)
+		}
+	}()
+
+	fmt.Println("All Tasks Completed")
 }
 
 func AWSCloud(pChannel chan string) {
