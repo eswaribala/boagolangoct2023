@@ -2,31 +2,47 @@ package models
 
 import (
 	Config "azureterraformproject/config"
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/pkg/errors"
 	"log"
 )
 
-func CreateDBConnection() *gorm.DB {
+func handlePanicScenario() {
+
+	value := recover()
+	fmt.Println("Recovered from Panic", value)
+}
+
+func CreateDBConnection() (*gorm.DB, error) {
 	//db, err := gorm.Open("mysql", "root:vignesh@(localhost:3306)/azuredb?parseTime=true")
-	db, err := gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
-	if err != nil {
-		log.Panic(err)
+
+	defer handlePanicScenario()
+	if len(Config.DbURL(Config.BuildDBConfig())) == 0 {
+		panic("Connection string is empty")
+		return nil, errors.New("Connection String Empty")
+	} else {
+
+		db, err := gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
+		if err != nil {
+			log.Panic(err)
+		}
+		log.Println("Connection Established")
+		//db.Exec("Create Database azuredb")
+		db.Exec("use azuredb")
+		//generate table
+		//whatever struct will be converted to table
+		db.AutoMigrate(&VMConfiguration{})
+		return db, nil
 	}
-	log.Println("Connection Established")
-	//db.Exec("Create Database azuredb")
-	db.Exec("use azuredb")
-	//generate table
-	//whatever struct will be converted to table
-	db.AutoMigrate(&VMConfiguration{})
-	return db
 
 }
 
 // SaveVMInstance insert the data into table
 func SaveVMInstance(vmInstance *VMConfiguration) {
 
-	db := CreateDBConnection()
+	db, _ := CreateDBConnection()
 
 	tx := db.Begin()
 	db.Set("gorm:auto_preload", true)
@@ -37,7 +53,7 @@ func SaveVMInstance(vmInstance *VMConfiguration) {
 
 // GetAllVMInstances select all rows
 func GetAllVMInstances() (vmInstancesResult *[]VMConfiguration) {
-	db := CreateDBConnection()
+	db, _ := CreateDBConnection()
 
 	var vmInstances []VMConfiguration
 	//db.Find(&customers)
@@ -46,7 +62,7 @@ func GetAllVMInstances() (vmInstancesResult *[]VMConfiguration) {
 }
 
 func GetVMConfigurationByName(vmName *string) (vmInstancesResult *VMConfiguration) {
-	db := CreateDBConnection()
+	db, _ := CreateDBConnection()
 
 	var vmInstance VMConfiguration
 

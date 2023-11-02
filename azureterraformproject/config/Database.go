@@ -17,13 +17,14 @@ type DBConfig struct {
 }
 
 func BuildDBConfig() *DBConfig {
-	dbConfig := DBConfig{
+	/*dbConfig := DBConfig{
 		Host:     "localhost",
 		Port:     3306,
 		User:     "root",
 		Password: "vignesh",
 		DBName:   "azuredb",
-	}
+	}*/
+	dbConfig := DBConfig{}
 	return &dbConfig
 }
 func DbURL(dbConfig *DBConfig) string {
