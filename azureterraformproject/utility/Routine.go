@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 )
 
 func routineAccessLink(link string, pChannel chan string) {
@@ -32,12 +33,14 @@ func main() {
 	for _, value := range links {
 		//function call converted to routine call
 		go routineAccessLink(value, channel)
+		//create the delay between routines
+		time.Sleep(5 * time.Second)
 	}
 
-	for i := 0; i < 3; i++ {
-
-		fmt.Printf("Message received from  to channel%s\n", <-channel)
-	}
+	fmt.Printf("Message received from  to channel%s\n", <-channel)
+	fmt.Printf("Message received from  to channel%s\n", <-channel)
+	fmt.Printf("Message received from  to channel%s\n", <-channel)
+	//fmt.Printf("Message received from  to channel%s\n", <-channel)
 
 	log.Println("Visited all the links")
 
