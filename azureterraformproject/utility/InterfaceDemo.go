@@ -13,20 +13,20 @@ func main() {
 	regions := [...]string{"US-East", "US-West", "Australia", "India"}
 	//step1
 	vmInstance := models.VMConfiguration{
-		CPUCount:     3,
-		RAM:          "32GB",
+		CPUCount:     4,
+		RAM:          "64GB",
 		Regions:      regions[0],
 		AccessKey:    "Aegwfu3624586235",
 		SecretKey:    "BIGIG*86869769",
 		InstanceType: "t2.nano",
 		Provider:     "azure",
-		VMName:       "BOA_VM1",
+		VMName:       "BOA_VM2",
 	}
 
 	//step2
 	//Associate the instance to interface
 	vmInterfaceRef = &vmInstance
-	instanceName := "BOA_VM1"
+	instanceName := "BOA_VM2"
 
 	//step3
 	//method invocation

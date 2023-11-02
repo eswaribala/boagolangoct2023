@@ -27,8 +27,9 @@ func CreateDBConnection() *gorm.DB {
 func SaveVMInstance(vmInstance *VMConfiguration) {
 
 	db := CreateDBConnection()
+
 	tx := db.Begin()
-	//db.Set("gorm:auto_preload", true)
+	db.Set("gorm:auto_preload", true)
 	db.Create(vmInstance)
 	tx.Commit()
 
@@ -46,6 +47,7 @@ func GetAllVMInstances() (vmInstancesResult *[]VMConfiguration) {
 
 func GetVMConfigurationByName(vmName *string) (vmInstancesResult *VMConfiguration) {
 	db := CreateDBConnection()
+
 	var vmInstance VMConfiguration
 
 	db.First(&vmInstance, vmName)
