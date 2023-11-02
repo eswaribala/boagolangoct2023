@@ -31,6 +31,9 @@ func main() {
 	//step3
 	//method invocation
 	vmInterfaceRef.ConnectionHelper()
+	vmInterfaceRef.SaveInstance(&vmInstance)
+	vmInterfaceRef.RetrieveAllInstances()
+	vmInterfaceRef.RetrieveInstanceByName(&instanceName)
 	vmInterfaceRef.Start(&instanceName)
 	vmInterfaceRef.Stop(true)
 	vmInterfaceRef.Terminate(true)

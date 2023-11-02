@@ -34,6 +34,18 @@ func (vmConfiguration *VMConfiguration) ConnectionHelper() {
 	CreateDBConnection()
 }
 
+func (vmConfiguration *VMConfiguration) SaveInstance(vmInstance *VMConfiguration) {
+
+	SaveVMInstance(vmInstance)
+}
+
+func (vmConfiguration *VMConfiguration) RetrieveAllInstances() (vmInstances *[]VMConfiguration) {
+	return GetAllVMInstances()
+}
+func (vmConfiguration *VMConfiguration) RetrieveInstanceByName(name *string) (vmInstances *VMConfiguration) {
+	return GetVMConfigurationByName(name)
+}
+
 func (vmConfiguration *VMConfiguration) Start(vmInstanceName *string) {
 
 	if vmConfiguration.VMName == *vmInstanceName {
