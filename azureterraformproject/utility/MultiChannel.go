@@ -13,6 +13,7 @@ func main() {
 	azureChannel := make(chan models.VMConfiguration)
 
 	go func(pChannel chan int) {
+		pChannel <- 1
 
 	}(gcpChannel)
 
@@ -23,6 +24,7 @@ func main() {
 
 func AWSCloud(pChannel chan string) {
 
+	pChannel <- "Aws cloud sending message"
 }
 
 func AzureCloud(pChannel chan models.VMConfiguration) {
@@ -43,7 +45,7 @@ func AzureCloud(pChannel chan models.VMConfiguration) {
 			Provider:     "azure",
 			VMName:       "BOA_VM1",
 		}
-		
+
 		pChannel <- vmInstance1
 	}
 }
