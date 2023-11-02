@@ -3,7 +3,6 @@ package main
 import (
 	"azureterraformproject/interfaces"
 	"azureterraformproject/models"
-	"fmt"
 )
 
 var (
@@ -32,10 +31,10 @@ func main() {
 	//step3
 	//method invocation
 	vmInterfaceRef.ConnectionHelper()
-	vmInterfaceRef.SaveInstance(&vmInstance)
+	/*vmInterfaceRef.SaveInstance(&vmInstance)
 	for key, value := range *vmInterfaceRef.RetrieveAllInstances() {
 		fmt.Println(key, value)
-	}
+	}*/
 	//vmInterfaceRef.RetrieveInstanceByName(&instanceName)
 	vmInterfaceRef.Start(&instanceName)
 	vmInterfaceRef.Stop(true)

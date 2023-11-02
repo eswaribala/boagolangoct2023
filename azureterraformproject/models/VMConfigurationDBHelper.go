@@ -2,10 +2,10 @@ package models
 
 import (
 	Config "azureterraformproject/config"
+	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/pkg/errors"
 	"log"
 )
 
