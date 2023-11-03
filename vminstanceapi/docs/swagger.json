@@ -14,7 +14,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:7074",
+    "host": "localhost:7072",
     "basePath": "/",
     "paths": {
         "/vminstances/v1.0": {

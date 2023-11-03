@@ -19,7 +19,7 @@ import (
 // @contact.email parameswaribala@gmail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:7074
+// @host localhost:7072
 // @BasePath /
 
 func main() {
@@ -37,6 +37,6 @@ func main() {
 	//swagger documentation
 	router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 	//api deployment
-	log.Fatal(http.ListenAndServe("7074", router))
+	log.Fatal(http.ListenAndServe("localhost:7072", router))
 
 }
