@@ -2,9 +2,7 @@ package Config
 
 import (
 	"fmt"
-	"github.com/hashicorp/vault/api"
 	"github.com/jinzhu/gorm"
-	"log"
 	"net/http"
 	"time"
 )
@@ -24,9 +22,10 @@ var httpClient = &http.Client{
 	Timeout: 10 * time.Second,
 }
 
+/*
 func ReadDataFromVault() []string {
 	vaultAddr := "http://127.0.0.1:8200"
-	rootToken := "s.1hcA47eSwj5sHHgrbuJQv80F"
+	rootToken := "s.mLggtXnpEIZcpdKWzIq1AHDm"
 	log.Println("Entered")
 	client, err := api.NewClient(&api.Config{Address: vaultAddr, HttpClient: httpClient})
 	if err != nil {
@@ -54,17 +53,17 @@ func ReadDataFromVault() []string {
 	}
 	return newData
 
-}
+}*/
 
 func BuildDBConfig() *DBConfig {
 
-	data := ReadDataFromVault()
+	//data := ReadDataFromVault()
 
 	dbConfig := DBConfig{
-		Host:     "localhost",
+		Host:     "mysql",
 		Port:     3306,
-		User:     data[1],
-		Password: data[0],
+		User:     "root",
+		Password: "vignesh",
 		DBName:   "azuredb",
 	}
 	//dbConfig := DBConfig{}
