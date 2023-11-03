@@ -5,6 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
+	"net/http"
 	Config "vminstanceapi/config"
 )
 
@@ -39,7 +40,7 @@ func CreateDBConnection() (*gorm.DB, error) {
 }
 
 // SaveVMInstance insert the data into table
-func SaveVMInstance(vmInstance *VMConfiguration) {
+func SaveVMInstance(response http.ResponseWriter, request *http.Request) {
 
 	db, _ := CreateDBConnection()
 
@@ -51,22 +52,28 @@ func SaveVMInstance(vmInstance *VMConfiguration) {
 }
 
 // GetAllVMInstances select all rows
-func GetAllVMInstances() (vmInstancesResult *[]VMConfiguration) {
+func GetAllVMInstances(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 
 	var vmInstances []VMConfiguration
 	//db.Find(&customers)
 	db.Find(&vmInstances)
-	return &vmInstances
+
 }
 
-func GetVMConfigurationByName(vmName *string) (vmInstancesResult *VMConfiguration) {
+func GetVMConfigurationByName(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 
 	var vmInstance VMConfiguration
 
 	db.First(&vmInstance, vmName)
 
-	return &vmInstance
+}
+
+func DeleteVMInstance(response http.ResponseWriter, request *http.Request) {
+
+}
+
+func UpdateVMInstance(response http.ResponseWriter, request *http.Request) {
 
 }
