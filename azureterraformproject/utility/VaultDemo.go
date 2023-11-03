@@ -15,7 +15,7 @@ var httpClient = &http.Client{
 func main() {
 
 	vaultAddr := "http://127.0.0.1:8200"
-	rootToken := "s.cusZuF9Eu8BAwToAzv5VcNXD"
+	rootToken := "s.1hcA47eSwj5sHHgrbuJQv80F"
 	log.Println("Entered")
 	client, err := api.NewClient(&api.Config{Address: vaultAddr, HttpClient: httpClient})
 	if err != nil {
