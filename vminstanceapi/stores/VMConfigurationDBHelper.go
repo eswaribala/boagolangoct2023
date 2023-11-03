@@ -51,7 +51,6 @@ func CreateDBConnection() (*gorm.DB, error) {
 // @Param vmInstance body VMConfiguration true "Create vmInstance"
 // @Success 200 {object} VMConfiguration
 // @Router /vminstances/v1.0 [post]
-
 func SaveVMInstance(response http.ResponseWriter, request *http.Request) {
 
 	db, _ := CreateDBConnection()
@@ -68,7 +67,7 @@ func SaveVMInstance(response http.ResponseWriter, request *http.Request) {
 // GetAllVMInstances select all rows
 // @Summary Get details of all vmInstances
 // @Description Get details of all vmInstances
-// @Tags vmInstances
+// @Tags vminstances
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} VMConfiguration
@@ -86,13 +85,12 @@ func GetAllVMInstances(response http.ResponseWriter, request *http.Request) {
 // GetVMConfigurationByName select specific row
 // @Summary Get details of  vmInstance by name
 // @Description Get details of vmInstance by name
-// @Tags vmInstance
-// @Param vmName path string  "Name of the VMInstance"
+// @Tags vminstances
+// @Param vmName path string true "VMName of the VMInstance"
 // @Accept  json
 // @Produce  json
-// @Success 200  VMConfiguration
+// @Success 200 {object} VMConfiguration
 // @Router /vminstances/v1.0/{vmName} [get]
-
 func GetVMConfigurationByName(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 	var vmInstance VMConfiguration
@@ -107,7 +105,7 @@ func GetVMConfigurationByName(response http.ResponseWriter, request *http.Reques
 // DeleteVMInstance godoc
 // @Summary Delete vmInstance
 // @Description Delete vmInstance by name
-// @Tags vmInstances
+// @Tags vminstances
 // @Accept  json
 // @Produce  json
 // @Param vmName path string true "VMName of the VMConfiguration"
@@ -118,7 +116,7 @@ func DeleteVMInstance(response http.ResponseWriter, request *http.Request) {
 	params := mux.Vars(request)
 	vmName := params["vmName"]
 	db.Where("VMName=?", vmName).Delete(&VMConfiguration{})
-	response.WriteHeader(http.StatusOK)
+	response.WriteHeader(http.StatusNoContent)
 }
 
 // UpdateVMInstance godoc

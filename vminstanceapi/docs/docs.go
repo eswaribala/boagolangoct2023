@@ -42,7 +42,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "vmInstances"
+                    "vminstances"
                 ],
                 "summary": "Get details of all vmInstances",
                 "responses": {
@@ -88,9 +88,71 @@ var doc = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "Save a new vminstance with the input payload",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vminstances"
+                ],
+                "summary": "Save a new VM Instance",
+                "parameters": [
+                    {
+                        "description": "Create vmInstance",
+                        "name": "vmInstance",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                }
             }
         },
         "/vminstances/v1.0/{vmName}": {
+            "get": {
+                "description": "Get details of vmInstance by name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vminstances"
+                ],
+                "summary": "Get details of  vmInstance by name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "VMName of the VMInstance",
+                        "name": "vmName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "description": "Delete vmInstance by name",
                 "consumes": [
@@ -100,7 +162,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "vmInstances"
+                    "vminstances"
                 ],
                 "summary": "Delete vmInstance",
                 "parameters": [

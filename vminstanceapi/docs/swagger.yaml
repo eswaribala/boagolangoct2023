@@ -48,7 +48,28 @@ paths:
             type: array
       summary: Get details of all vmInstances
       tags:
-      - vmInstances
+      - vminstances
+    post:
+      consumes:
+      - application/json
+      description: Save a new vminstance with the input payload
+      parameters:
+      - description: Create vmInstance
+        in: body
+        name: vmInstance
+        required: true
+        schema:
+          $ref: '#/definitions/stores.VMConfiguration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stores.VMConfiguration'
+      summary: Save a new VM Instance
+      tags:
+      - vminstances
     put:
       consumes:
       - application/json
@@ -90,5 +111,25 @@ paths:
             $ref: '#/definitions/stores.VMConfiguration'
       summary: Delete vmInstance
       tags:
-      - vmInstances
+      - vminstances
+    get:
+      consumes:
+      - application/json
+      description: Get details of vmInstance by name
+      parameters:
+      - description: VMName of the VMInstance
+        in: path
+        name: vmName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stores.VMConfiguration'
+      summary: Get details of  vmInstance by name
+      tags:
+      - vminstances
 swagger: "2.0"
