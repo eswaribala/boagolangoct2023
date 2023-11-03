@@ -14,7 +14,7 @@ func TestDeployTFFile(t *testing.T) {
 	})
 
 	// Clean up resources with "terraform destroy" at the end of the test.
-	//defer terraform.Destroy(t, terraformOptions)
+	defer terraform.Destroy(t, terraformOptions)
 
 	// Run "terraform init" and "terraform apply". Fail the test if there are any errors.
 	terraform.InitAndApply(t, terraformOptions)

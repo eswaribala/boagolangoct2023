@@ -6,7 +6,6 @@ import (
 	"github.com/jinzhu/gorm"
 	"log"
 	"net/http"
-	"reflect"
 	"time"
 )
 
@@ -25,35 +24,47 @@ var httpClient = &http.Client{
 	Timeout: 10 * time.Second,
 }
 
-func ReadDatafromVault() {
-	vaultAddr := "http://localhost:8200"
-	rootToken := "s.7a1lmH5XuRV3LsLbmcVE23fh"
+func ReadDataFromVault() []string {
+	vaultAddr := "http://127.0.0.1:8200"
+	rootToken := "s.cusZuF9Eu8BAwToAzv5VcNXD"
 	log.Println("Entered")
 	client, err := api.NewClient(&api.Config{Address: vaultAddr, HttpClient: httpClient})
 	if err != nil {
 		panic(err)
 	}
 	client.SetToken(rootToken)
+
 	//read the credentials from the client
-	secrets, error := client.Logical().Read("secret/mysqlsecret")
+	secrets, error := client.Logical().Read("/secret/data/mysqlsecret")
 	if error != nil {
 		log.Println("Secret not found....", error)
 	}
+	newData := make([]string, 2)
+	i := 0
+	for _, value := range secrets.Data {
 
-	for key, val := range secrets.Data {
-		log.Println(key, val)
-		log.Println(reflect.TypeOf(val))
+		for k, v := range value.(map[string]interface{}) {
+			if k == "username" || k == "password" {
+				fmt.Println(v)
+				newData[i] = v.(string)
+				i++
+			}
 
+		}
 	}
+	return newData
 
 }
 
 func BuildDBConfig() *DBConfig {
+
+	data := ReadDataFromVault()
+
 	dbConfig := DBConfig{
 		Host:     "localhost",
 		Port:     3306,
-		User:     "root",
-		Password: "vignesh",
+		User:     data[1],
+		Password: data[0],
 		DBName:   "azuredb",
 	}
 	//dbConfig := DBConfig{}

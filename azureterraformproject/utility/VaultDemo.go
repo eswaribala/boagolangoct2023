@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/hashicorp/vault/api"
 	"log"
 	"net/http"
-	"reflect"
 	"time"
 )
 
@@ -14,8 +14,8 @@ var httpClient = &http.Client{
 
 func main() {
 
-	vaultAddr := "http://localhost:8200"
-	rootToken := "s.7a1lmH5XuRV3LsLbmcVE23fh"
+	vaultAddr := "http://127.0.0.1:8200"
+	rootToken := "s.cusZuF9Eu8BAwToAzv5VcNXD"
 	log.Println("Entered")
 	client, err := api.NewClient(&api.Config{Address: vaultAddr, HttpClient: httpClient})
 	if err != nil {
@@ -24,13 +24,18 @@ func main() {
 	client.SetToken(rootToken)
 
 	//read the credentials from the client
-	secrets, error := client.Logical().Read("secret/mysqlsecret")
+	secrets, error := client.Logical().Read("/secret/data/mysqlsecret")
 	if error != nil {
 		log.Println("Secret not found....", error)
 	}
-	for key, value := range secrets.Data {
-		log.Println(key, value)
-		log.Println(reflect.TypeOf(value))
+	for _, value := range secrets.Data {
+
+		for k, v := range value.(map[string]interface{}) {
+			if k == "username" || k == "password" {
+				fmt.Println(v)
+			}
+
+		}
 	}
 
 }
