@@ -9,7 +9,7 @@ type Subnet struct {
 
 type VMConfiguration struct {
 	Provider     string `json:"provider"`
-	VMName       string `json:"vm_name gorm:"primary_key"`
+	VMName       string `json:"vm_name" gorm:"primary_key"`
 	AccessKey    string `json:"access_key"`
 	SecretKey    string `json:"secret_key"`
 	Regions      string `json:"regions"`
