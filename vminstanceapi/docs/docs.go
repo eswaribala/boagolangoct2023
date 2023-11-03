@@ -210,7 +210,7 @@ var doc = `{
                 "secret_key": {
                     "type": "string"
                 },
-                "vm_name gorm:": {
+                "vm_name": {
                     "type": "string"
                 }
             }

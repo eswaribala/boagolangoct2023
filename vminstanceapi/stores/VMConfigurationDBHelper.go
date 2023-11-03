@@ -96,7 +96,8 @@ func GetVMConfigurationByName(response http.ResponseWriter, request *http.Reques
 	var vmInstance VMConfiguration
 	params := mux.Vars(request)
 	vmName := params["vmName"]
-	db.First(&vmInstance, vmName)
+	log.Println("VM Name", vmName)
+	db.Where("vm_name=?", vmName).First(&vmInstance)
 	response.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(response).Encode(vmInstance)
 
@@ -115,7 +116,7 @@ func DeleteVMInstance(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 	params := mux.Vars(request)
 	vmName := params["vmName"]
-	db.Where("VMName=?", vmName).Delete(&VMConfiguration{})
+	db.Where("vm_name=?", vmName).Delete(&VMConfiguration{})
 	response.WriteHeader(http.StatusNoContent)
 }
 
