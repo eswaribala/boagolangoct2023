@@ -42,6 +42,16 @@ func CreateDBConnection() (*gorm.DB, error) {
 }
 
 // SaveVMInstance insert the data into table
+// SaveVMInstance godoc
+// @Summary Save a new VM Instance
+// @Description Save a new vminstance with the input payload
+// @Tags vminstances
+// @Accept  json
+// @Produce  json
+// @Param vmInstance body VMConfiguration true "Create vmInstance"
+// @Success 200 {object} VMConfiguration
+// @Router /vminstances/v1.0 [post]
+
 func SaveVMInstance(response http.ResponseWriter, request *http.Request) {
 
 	db, _ := CreateDBConnection()
@@ -56,6 +66,13 @@ func SaveVMInstance(response http.ResponseWriter, request *http.Request) {
 }
 
 // GetAllVMInstances select all rows
+// @Summary Get details of all vmInstances
+// @Description Get details of all vmInstances
+// @Tags vmInstances
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} VMConfiguration
+// @Router /vminstances/v1.0 [get]
 func GetAllVMInstances(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 	var vmInstances []VMConfiguration
@@ -65,6 +82,16 @@ func GetAllVMInstances(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode(vmInstances)
 
 }
+
+// GetVMConfigurationByName select specific row
+// @Summary Get details of  vmInstance by name
+// @Description Get details of vmInstance by name
+// @Tags vmInstance
+// @Param vmName path string  "Name of the VMInstance"
+// @Accept  json
+// @Produce  json
+// @Success 200  VMConfiguration
+// @Router /vminstances/v1.0/{vmName} [get]
 
 func GetVMConfigurationByName(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
@@ -77,6 +104,15 @@ func GetVMConfigurationByName(response http.ResponseWriter, request *http.Reques
 
 }
 
+// DeleteVMInstance godoc
+// @Summary Delete vmInstance
+// @Description Delete vmInstance by name
+// @Tags vmInstances
+// @Accept  json
+// @Produce  json
+// @Param vmName path string true "VMName of the VMConfiguration"
+// @Success 200 {object} VMConfiguration
+// @Router /vminstances/v1.0/{vmName} [delete]
 func DeleteVMInstance(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 	params := mux.Vars(request)
@@ -85,6 +121,15 @@ func DeleteVMInstance(response http.ResponseWriter, request *http.Request) {
 	response.WriteHeader(http.StatusOK)
 }
 
+// UpdateVMInstance godoc
+// @Summary Update existing vmInstance
+// @Description Update existing vmInstance with the input vmInstance
+// @Tags vminstances
+// @Accept  json
+// @Produce  json
+// @Param vmInstance body VMConfiguration true "Create customer"
+// @Success 200 {object} VMConfiguration
+// @Router /vminstances/v1.0 [put]
 func UpdateVMInstance(response http.ResponseWriter, request *http.Request) {
 	db, _ := CreateDBConnection()
 	var vmInstance VMConfiguration

@@ -10,6 +10,17 @@ import (
 	"vminstanceapi/stores"
 )
 
+// @title VMConfiguration API
+// @version 1.0
+// @description This is api service for managing VM Configuration
+// @termsOfService http://swagger.io/terms/
+// @contact.name API Support
+// @contact.email parameswaribala@gmail.com
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:7074
+// @BasePath /
+
 func main() {
 
 	router := mux.NewRouter()
