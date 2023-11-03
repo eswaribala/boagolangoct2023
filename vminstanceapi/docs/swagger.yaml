@@ -1,0 +1,94 @@
+basePath: /
+definitions:
+  stores.VMConfiguration:
+    properties:
+      access_key:
+        type: string
+      cpu_count:
+        type: integer
+      instance_type:
+        type: string
+      provider:
+        type: string
+      ram:
+        type: string
+      regions:
+        type: string
+      secret_key:
+        type: string
+      'vm_name gorm:':
+        type: string
+    type: object
+host: localhost:7074
+info:
+  contact:
+    email: parameswaribala@gmail.com
+    name: API Support
+  description: This is api service for managing VM Configuration
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: VMConfiguration API
+  version: "1.0"
+paths:
+  /vminstances/v1.0:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all vmInstances
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/stores.VMConfiguration'
+            type: array
+      summary: Get details of all vmInstances
+      tags:
+      - vmInstances
+    put:
+      consumes:
+      - application/json
+      description: Update existing vmInstance with the input vmInstance
+      parameters:
+      - description: Create customer
+        in: body
+        name: vmInstance
+        required: true
+        schema:
+          $ref: '#/definitions/stores.VMConfiguration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stores.VMConfiguration'
+      summary: Update existing vmInstance
+      tags:
+      - vminstances
+  /vminstances/v1.0/{vmName}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete vmInstance by name
+      parameters:
+      - description: VMName of the VMConfiguration
+        in: path
+        name: vmName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stores.VMConfiguration'
+      summary: Delete vmInstance
+      tags:
+      - vmInstances
+swagger: "2.0"

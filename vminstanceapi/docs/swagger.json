@@ -1,0 +1,142 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is api service for managing VM Configuration",
+        "title": "VMConfiguration API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "email": "parameswaribala@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:7074",
+    "basePath": "/",
+    "paths": {
+        "/vminstances/v1.0": {
+            "get": {
+                "description": "Get details of all vmInstances",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vmInstances"
+                ],
+                "summary": "Get details of all vmInstances",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/stores.VMConfiguration"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update existing vmInstance with the input vmInstance",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vminstances"
+                ],
+                "summary": "Update existing vmInstance",
+                "parameters": [
+                    {
+                        "description": "Create customer",
+                        "name": "vmInstance",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                }
+            }
+        },
+        "/vminstances/v1.0/{vmName}": {
+            "delete": {
+                "description": "Delete vmInstance by name",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vmInstances"
+                ],
+                "summary": "Delete vmInstance",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "VMName of the VMConfiguration",
+                        "name": "vmName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/stores.VMConfiguration"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "stores.VMConfiguration": {
+            "type": "object",
+            "properties": {
+                "access_key": {
+                    "type": "string"
+                },
+                "cpu_count": {
+                    "type": "integer"
+                },
+                "instance_type": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "ram": {
+                    "type": "string"
+                },
+                "regions": {
+                    "type": "string"
+                },
+                "secret_key": {
+                    "type": "string"
+                },
+                "vm_name gorm:": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
